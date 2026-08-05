@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プライバシーポリシー - 電気通信工事施工管理技士 一次対策</title>
+  <title>プライバシーポリシー - 電気通信工事施工管理技士</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
@@ -20,25 +20,93 @@
 </head>
 <body>
   <h1>プライバシーポリシー</h1>
-  <p>アプリ名：電気通信工事施工管理技士 一次対策<br>
+  <p>アプリ名：電気通信工事施工管理技士<br>
   開発者：KawaApp Studio<br>
-  最終更新：2026年7月13日</p>
+  最終更新：2026年8月2日</p>
 
   <h2>開発者による情報収集</h2>
-  <p>本アプリは、ユーザーの個人情報・位置情報・端末識別情報・その他いかなる個人データも開発者側に収集することはありません。</p>
+  <p>通常の学習機能（問題演習・施工経験記述の下書き・セルフチェック・手書きリハーサル・記述対策）では、
+  入力された内容を開発者へ送信しません。</p>
+  <p>任意の「AI点検」を実行した場合に限り、下記「AI点検」の項に記載した内容を送信します。
+  それ以外に、氏名・位置情報・端末識別情報などの個人データを開発者が収集することはありません。</p>
 
   <h2>ネットワーク通信</h2>
-  <p>本アプリは、学習進捗のiCloud同期（後述）を除き、インターネット通信を行いません。広告配信・解析・トラッキング目的の通信は一切ありません。</p>
+  <p>本アプリの学習機能（問題演習・施工経験記述の下書き・セルフチェック・手書きリハーサル・記述対策）は、
+  すべて端末内で完結し、インターネット通信を行いません。広告配信・トラッキング目的の通信は一切ありません。</p>
+  <p>通信を行うのは次の3つだけです。</p>
+  <ol>
+    <li>学習進捗の iCloud 同期（後述）</li>
+    <li><strong>AI点検</strong>（任意・有料。iPhone／iPad のみ。後述）</li>
+    <li>匿名の利用状況カウンタ（後述）</li>
+  </ol>
+
+  <h2>AI点検（任意・有料の機能）</h2>
+  <p>「施工経験記述」の下書きに対して、課題・対策・評価／結果のつながりを読み取れるかどうかを
+  返す機能です。<strong>お使いになるかどうかは任意で、実行のたびに送信内容の全文をお見せし、
+  そのつど明示的な同意をいただいてから送信します。</strong>この機能を使わなくても、
+  他のすべての機能はそのままご利用いただけます。</p>
+
+  <h3>送信するもの</h3>
+  <ul>
+    <li>ご自身が入力した「テーマ名」「課題」「対策内容」「評価／結果」の本文。
+      ただし、端末内で発注者名・工事場所・請負概算金額・工事名・年月・社名・氏名・
+      メールアドレス・電話番号などを自動的に置き換えたうえで送信します。
+      置き換えの結果は送信前に全文表示し、伏せたい語をご自身で追加できます。
+      <strong>この自動置換は完全ではありません。表示される全文を必ずご確認ください。</strong></li>
+    <li>立場の区分（発注機関側／元請／一次下請／二次下請以降）</li>
+    <li>端末内で数えた測定値（文字数・件数などの数値のみ）</li>
+    <li>端末内で生成した匿名ID（乱数32桁。氏名・メールアドレス・端末識別子とは無関係で、
+      個人を特定できません。購入した回数券の残高管理と、上記の結果の保管に使用します）</li>
+  </ul>
+
+  <h3>送信しないもの</h3>
+  <ul>
+    <li><strong>〔工事概要〕欄のすべて</strong>（工事名・発注者名・工事場所・工期・請負概算金額・
+      工事の概要・立場又は役割の自由記述）。この欄は端末内にのみ保存されます。</li>
+    <li>氏名・メールアドレス・電話番号・位置情報・端末識別子・広告識別子</li>
+  </ul>
+
+  <h3>送信先</h3>
+  <ul>
+    <li><strong>Cloudflare, Inc.</strong>（米国）— 開発者が運用する中継サーバーの稼働基盤。
+      中継サーバーは送信された本文を保存しません。</li>
+    <li><strong>Anthropic PBC</strong>（米国）— 点検を行う生成AI（Claude）の提供者。
+      同社のAPI利用条件に基づき、送信内容はモデルの学習には使用されません。</li>
+  </ul>
+  <p>送信された本文は、点検結果を返すための処理に必要な間だけ扱われ、開発者側に保存されません。</p>
+  <p>点検の結果は、同じ内容で再度実行したときに回数を二重に消費させないため、
+  匿名IDと結び付けて中継サーバーに保管します。保管するのは
+  <strong>判定の種別を表すコードと、引用箇所の位置・長さの数値だけ</strong>で、
+  答案の文章そのものは含みません（引用は再実行時に、お客様の端末から送られた同じ本文から
+  切り出し直します）。この保管は最長で7日間です。</p>
+  <p>お勤め先の規程により外部の生成AIサービスへ業務に関する情報を送信することが
+  禁じられている場合があります。ご利用前にご確認ください。</p>
+  <p>同意の撤回は、AI点検を実行しないことによっていつでも可能です。
+  同意は実行のたびに個別にいただくため、過去の同意が次回に引き継がれることはありません。</p>
+
+  <h2>匿名の利用状況カウンタ</h2>
+  <p>どの画面がどれだけ使われたかを判断するため、画面を開いた回数などの
+  <strong>イベント名と件数だけ</strong>を、開発者が運用する中継サーバー（Cloudflare）へ送信します。
+  答案の本文・入力内容・個人を識別できる情報・IPアドレスの記録は含まれません。</p>
 
   <h2>端末内に保存されるデータ</h2>
-  <p>学習進捗（解答履歴・正解率・苦手問題の自動抽出・ブックマーク）は、端末の UserDefaults / SharedPreferences に保存されます。アプリを削除すると、これらのデータも削除されます。</p>
+  <p>学習進捗（解答履歴・正解率・苦手問題の自動抽出・ブックマーク）、施工経験記述の下書き
+  （〔工事概要〕を含む）、記述対策のメモ、手書きリハーサルの記録は、端末の
+  UserDefaults / SharedPreferences に保存されます。回数券の残高管理に使う匿名IDは
+  iOS のキーチェーンに保存されます。アプリを削除すると、これらのデータも削除されます
+  （匿名IDはキーチェーンの仕様上、再インストール時に復元される場合があります）。</p>
+  <p><strong>施工経験記述の下書きは iCloud に同期しません。</strong>端末内にのみ保存されます。</p>
 
   <h2>iCloud 同期</h2>
   <p>iCloud にサインインしている iOS デバイスでは、学習進捗が iCloud Key-Value Store を通じて、ユーザー自身の iCloud アカウント内に自動保存されます。これにより同じ Apple ID の他端末との進捗共有や、機種変更時の引き継ぎが可能です。</p>
   <p>iCloud に保存されるデータはユーザー自身のアカウント管理下にあり、開発者がアクセスすることはありません。iCloud 同期を望まない場合は iOS の設定で本アプリの iCloud 利用をオフにできます。</p>
 
   <h2>第三者サービス</h2>
-  <p>本アプリは広告、アナリティクス、広告・解析・トラッキング目的の第三者SDKは使用していません。</p>
+  <p>広告・トラッキング目的の第三者SDKは使用していません。</p>
+  <p>アプリ内購入の管理に <strong>RevenueCat, Inc.</strong>（米国）を利用しています。
+  同社へは購入に関する情報（購入した商品・端末が生成した匿名の識別子）が送信されます。</p>
+  <p>AI点検をご利用の場合に限り、上記のとおり Cloudflare, Inc. および Anthropic PBC へ
+  送信が行われます。</p>
 
   <h2>レビュー誘導</h2>
   <p>Apple 純正の SKStoreReviewController（App Store の標準レビュー機能）のみを使用しています。本アプリが個別にユーザーの評価情報を取得することはありません。</p>
@@ -48,6 +116,9 @@
   <a href="mailto:asonedaywillberefreshing@gmail.com">asonedaywillberefreshing@gmail.com</a></p>
 
   <h2>Privacy Policy (English)</h2>
-  <p>This app does not collect any personal information, location data, or device identifiers. Network connections are limited to iCloud Key-Value Store sync (which stores study progress only in the user's own iCloud account; the developer has no access). No advertising, analytics, or tracking SDKs or advertising are used. Study progress (answer history, accuracy, weak-question detection, bookmarks) is stored in the device's UserDefaults/SharedPreferences and the user's iCloud, and is removed when the app is uninstalled.</p>
+  <p>This app does not collect personal information, location data, or device identifiers. No advertising or tracking SDKs are used. Study progress and your construction-experience drafts are stored in the device's UserDefaults/SharedPreferences (drafts are <strong>not</strong> synced to iCloud) and are removed when the app is uninstalled. Study progress is additionally synced through iCloud Key-Value Store within your own iCloud account; the developer has no access.</p>
+  <p><strong>AI Review (optional, paid, iOS only).</strong> When you choose to run it, the text you wrote for "issue", "measure" and "evaluation/result" is sent to a relay server operated by the developer on <strong>Cloudflare, Inc.</strong> (USA) and then to <strong>Anthropic PBC</strong> (USA) for processing by the Claude model. Before every request the app masks client names, locations, contract amounts, project names, dates, organization names, personal names, e-mail addresses and phone numbers on-device, shows you the complete text that will be sent, and asks for your explicit consent. <strong>The masking is not guaranteed to be exhaustive; please review the displayed text.</strong> The construction outline fields (project name, client, location, period, contract amount, outline, role) are never transmitted. Also sent: the theme name you entered, your role category, and numeric measurements computed on-device. An anonymous random identifier (32 random hex characters, unrelated to your name, e-mail or any device identifier) is sent to manage your purchased credit balance and to key the result cache. Submitted text is not stored by the developer. The result is cached against the anonymous identifier for up to 7 days so that re-running the same text does not consume another credit; that cache holds only verdict codes and the offset/length of the quoted span, never the text itself (quotes are re-extracted from the body your device sends on the retry). Anthropic does not use API inputs to train its models. Your workplace may prohibit sending work-related information to external AI services; please check before use. Consent is requested for every single request and is never carried over.</p>
+  <p><strong>Anonymous usage counters.</strong> Event names and counts only (no text, no identifiers, no IP logging) are sent to the developer's relay server to understand which screens are used.</p>
+  <p><strong>In-app purchases</strong> are managed with <strong>RevenueCat, Inc.</strong> (USA).</p>
 </body>
 </html>
