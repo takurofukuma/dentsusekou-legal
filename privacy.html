@@ -27,17 +27,20 @@
   <h2>開発者による情報収集</h2>
   <p>通常の学習機能（問題演習・施工経験記述の下書き・セルフチェック・手書きリハーサル・記述対策）では、
   入力された内容を開発者へ送信しません。</p>
-  <p>任意の「AI点検」を実行した場合に限り、下記「AI点検」の項に記載した内容を送信します。
-  それ以外に、氏名・位置情報・端末識別情報などの個人データを開発者が収集することはありません。</p>
+  <p>お客様が入力した本文（答案・下書き）が開発者へ送信されるのは、任意の「AI点検」を実行した場合だけです。
+  これとは別に、購入状態の確認（アプリ内課金）、AI点検の残り回数の確認、匿名の利用状況カウンタの送信を行います。
+  いずれも下記の各項に記載したものだけを送信し、氏名・位置情報・端末識別情報などの個人データを開発者が収集することはありません。</p>
 
   <h2>ネットワーク通信</h2>
   <p>本アプリの学習機能（問題演習・施工経験記述の下書き・セルフチェック・手書きリハーサル・記述対策）は、
-  すべて端末内で完結し、インターネット通信を行いません。広告配信・トラッキング目的の通信は一切ありません。</p>
+  入力・採点・計測のすべてを端末内で処理し、入力された内容を外部へ送信しません。
+  ただし、どの画面がどれだけ使われたかを数えた匿名のカウンタは、これらの画面（問題演習を除く）からも送信されます（後述）。
+  広告配信・トラッキング目的の通信は一切ありません。</p>
   <p>通信を行うのは次の4つだけです。</p>
   <ol>
-    <li><strong>アプリ内課金</strong>（買い切りの全機能解放。後述）</li>
+    <li><strong>アプリ内課金</strong>（買い切りの全機能解放。購入していない場合も、起動時とアプリ復帰時に購入状態の確認を行います。後述）</li>
     <li>学習進捗の iCloud 同期（iOS版のみ。後述）</li>
-    <li><strong>AI点検</strong>（任意・有料。iOS版のみ。後述）</li>
+    <li><strong>AI点検</strong>（任意・有料。iOS版のみ。実行時の送信のほか、AI点検の画面を開いたときに残り回数の確認を行います。後述）</li>
     <li>匿名の利用状況カウンタ（後述）</li>
   </ol>
 
@@ -46,6 +49,9 @@
   金額は、App Store / Google Play の商品ページおよびアプリ内の購入画面に表示される価格が正となります。</p>
   <p>決済と購入の検証は、iOS 版では Apple の App Store / StoreKit が、Android 版では Google Play / Google Play Billing が行います。
   購入状態（エンタイトルメント）の確認・復元・管理には RevenueCat SDK を利用します。
+  この確認は、購入の有無やお客様の操作にかかわらず、アプリの起動時とアプリ復帰時に自動で行われます
+  （通信の悪い場所で起動したあとでも、購入済みの機能が使えないままにならないようにするためです）。このとき送信されるのは
+  購入状態の確認に必要な情報（購入に関する情報と、匿名のアプリ利用者識別子）だけで、学習内容や入力された内容は含まれません。
   開発者は、ユーザーの氏名・メールアドレスなどの個人情報を取得しません。RevenueCat の仕組み上、
   匿名のアプリ利用者識別子（RevenueCat が自動生成する App User ID）、購入情報、レシート情報等が
   RevenueCat 側で処理される場合があります。これらは購入の確認・復元・不正防止のためにのみ使用され、
@@ -59,6 +65,10 @@
   返す機能です。<strong>お使いになるかどうかは任意で、実行のたびに送信内容の全文をお見せし、
   そのつど明示的な同意をいただいてから送信します。</strong>この機能を使わなくても、
   他のすべての機能はそのままご利用いただけます。</p>
+  <p>AI点検の画面を開いたときは、点検を実行する前に、残りの回数を確認するため
+  下記の匿名ID（購入の反映が途中で止まっている場合は、その App Store の取引IDも）を
+  中継サーバー（Cloudflare）へ送信します。このときは答案の本文を送信せず、
+  Anthropic PBC への送信も行いません。</p>
 
   <h3>送信するもの</h3>
   <ul>
@@ -69,6 +79,8 @@
       <strong>この自動置換は完全ではありません。表示される全文を必ずご確認ください。</strong></li>
     <li>立場の区分（発注機関側／元請／一次下請／二次下請以降）</li>
     <li>端末内で数えた測定値（文字数・件数などの数値のみ）</li>
+    <li>受験級の区分（1級／2級）と、同じ内容で再実行したときに回数を二重に使わないための
+      照合用の値（送信内容から端末内で計算した16桁の英数字。本文そのものは含みません）</li>
     <li>端末内で生成した匿名ID（乱数32桁。氏名・メールアドレス・端末識別子とは無関係で、
       個人を特定できません。購入した回数券の残高管理と、上記の結果の保管に使用します）</li>
   </ul>
@@ -137,9 +149,11 @@
   <h2>第三者サービス</h2>
   <p>広告・トラッキング目的の第三者SDKは使用していません。</p>
   <p>アプリ内購入の管理に <strong>RevenueCat, Inc.</strong>（米国）を利用しています。
-  同社へは購入に関する情報（購入した商品・端末が生成した匿名の識別子）が送信されます。</p>
-  <p>AI点検をご利用の場合に限り、上記のとおり Cloudflare, Inc. および Anthropic PBC へ
-  送信が行われます。</p>
+  同社へは購入に関する情報（購入した商品・端末が生成した匿名の識別子）が送信されます。
+  この送信は、購入したときだけでなく、購入状態を確認するためアプリの起動時とアプリ復帰時にも行われます。</p>
+  <p><strong>Anthropic PBC</strong>（米国）へ送信が行われるのは、AI点検を実行した場合に限ります。</p>
+  <p>開発者が運用する中継サーバー（<strong>Cloudflare, Inc.</strong>／米国）へは、AI点検の実行のほかに、
+  AI点検の画面を開いたときの残り回数の確認と、匿名の利用状況カウンタの送信が行われます。</p>
 
   <h2>レビュー誘導</h2>
   <p>OS 標準のレビュー機能のみを使用しています（iOS 版は Apple の SKStoreReviewController、Android 版は Google Play In-App Review）。本アプリが個別にユーザーの評価情報を取得することはありません。</p>
@@ -153,8 +167,8 @@
 
   <h2>Privacy Policy (English)</h2>
   <p>This app does not collect personal information, location data, or device identifiers. Buttons such as "report an error" or "contact us" only open your own mail app; the app never sends mail by itself. If you choose to send a message, the developer receives your email address, the subject, and the body, and uses them only to reply and to consider fixes and improvements. They are not shared with third parties. No advertising or tracking SDKs are used. Study progress and your construction-experience drafts are stored in the device's UserDefaults/SharedPreferences (drafts are <strong>not</strong> synced to iCloud) and are removed when the app is uninstalled. Study progress is additionally synced through iCloud Key-Value Store within your own iCloud account; the developer has no access.</p>
-  <p><strong>AI Review (optional, paid, iOS only).</strong> When you choose to run it, the text you wrote for "issue", "measure" and "evaluation/result" is sent to a relay server operated by the developer on <strong>Cloudflare, Inc.</strong> (USA) and then to <strong>Anthropic PBC</strong> (USA) for processing by the Claude model. Before every request the app masks client names, locations, contract amounts, project names, dates, organization names, personal names, e-mail addresses and phone numbers on-device, shows you the complete text that will be sent, and asks for your explicit consent. <strong>The masking is not guaranteed to be exhaustive; please review the displayed text.</strong> The construction outline fields (project name, client, location, period, contract amount, outline, role) are never transmitted. Also sent: the theme name you entered, your role category, and numeric measurements computed on-device. An anonymous random identifier (32 random hex characters, unrelated to your name, e-mail or any device identifier) is sent to manage your purchased credit balance and to key the result cache. Submitted text is not stored by the developer. The result is cached against the anonymous identifier for up to 7 days so that re-running the same text does not consume another credit; that cache holds only verdict codes and the offset/length of the quoted span, never the text itself (quotes are re-extracted from the body your device sends on the retry). Anthropic does not use API inputs to train its models. Your workplace may prohibit sending work-related information to external AI services; please check before use. Consent is requested for every single request and is never carried over.</p>
-  <p><strong>Anonymous usage counters.</strong> Event names and counts only (no text, no identifiers, no IP logging) are sent to the developer's relay server to understand which screens are used.</p>
-  <p><strong>In-app purchases</strong> are managed with <strong>RevenueCat, Inc.</strong> (USA).</p>
+  <p><strong>AI Review (optional, paid, iOS only).</strong> When you choose to run it, the text you wrote for "issue", "measure" and "evaluation/result" is sent to a relay server operated by the developer on <strong>Cloudflare, Inc.</strong> (USA) and then to <strong>Anthropic PBC</strong> (USA) for processing by the Claude model. Before every request the app masks client names, locations, contract amounts, project names, dates, organization names, personal names, e-mail addresses and phone numbers on-device, shows you the complete text that will be sent, and asks for your explicit consent. <strong>The masking is not guaranteed to be exhaustive; please review the displayed text.</strong> The construction outline fields (project name, client, location, period, contract amount, outline, role) are never transmitted. Also sent: the theme name you entered, your role category, numeric measurements computed on-device, your exam grade (1st or 2nd class), and a 16-character check value computed on-device from the request so that re-running the same content does not consume another credit. An anonymous random identifier (32 random hex characters, unrelated to your name, e-mail or any device identifier) is sent to manage your purchased credit balance and to key the result cache. Submitted text is not stored by the developer. The result is cached against the anonymous identifier for up to 7 days so that re-running the same text does not consume another credit; that cache holds only verdict codes and the offset/length of the quoted span, never the text itself (quotes are re-extracted from the body your device sends on the retry). Anthropic does not use API inputs to train its models. Your workplace may prohibit sending work-related information to external AI services; please check before use. Consent is requested for every single request and is never carried over. Opening the AI Review screen also sends the anonymous identifier alone (plus the App Store transaction ID if a purchase has not finished being credited) to the relay server to check your remaining credits; no text is sent at that point and nothing is sent to Anthropic.</p>
+  <p><strong>Anonymous usage counters.</strong> Event names and counts only (no text, no identifiers, no IP logging) are sent to the developer's relay server to understand which screens are used. These counters are also sent from the construction-experience, self-check, handwriting-rehearsal and written-answer screens; the first-stage quiz sends none.</p>
+  <p><strong>In-app purchases</strong> are managed with <strong>RevenueCat, Inc.</strong> (USA). The app contacts RevenueCat at launch and when returning to the foreground to check your entitlement, whether or not you have purchased anything; only purchase-related information and an anonymous app user identifier are sent.</p>
 </body>
 </html>
